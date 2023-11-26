@@ -20,6 +20,7 @@ const Formulario = () => {
         (nombre === "" || email === "" || password === "" || passwordConfirm === "") 
         {
         setError(true);
+        setErrorPassword(false)
         setExito(false);
         return;
         }
