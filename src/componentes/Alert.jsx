@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const Alert = ({ message, type }) => {
+const Alerta = ({ mensaje }) => {
     return (
-        <div className={`alert alert-${type}`} role="alert">
-            {message}
+        <div className="alert alert-danger mt-3" role="alert">
+            {mensaje}
         </div>
     );
 };
 
-export default Alert;
+export default Alerta;

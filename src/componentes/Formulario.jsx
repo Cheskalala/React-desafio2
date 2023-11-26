@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Alerta from "./Alert";
+import ExitoAlerta from "./ExitoAlerta";
 
 const Formulario = () => {
   //Estados del formulario
@@ -9,6 +11,7 @@ const Formulario = () => {
   //Estado para los errores
   const [error, setError] = useState(false);
   const [errorPassword, setErrorPassword] = useState (false)
+  const [exito, setExito] = useState(false);
   //Función antes de enviar el formulario
   const validarDatos = (e) => {
     e.preventDefault();
@@ -17,6 +20,7 @@ const Formulario = () => {
         (nombre === "" || email === "" || password === "" || passwordConfirm === "") 
         {
         setError(true);
+        setExito(false);
         return;
         }
     else if
@@ -24,10 +28,13 @@ const Formulario = () => {
         {
             setError(false);
             setErrorPassword(true);
+            setExito(false);
             return;
         }
     else{
+        setError(false)
         setErrorPassword(false)
+        setExito(true);
     }    
     
   };
@@ -72,8 +79,9 @@ const Formulario = () => {
         <button type="submit" className="btn btn-warning py-3 px-5 mt-5 text-white fw-bold">
           Enviar
         </button>
-            {error ? <p>Todos los campos son obligatorios</p> : null}
-            {errorPassword ? <p>Las contraseñas no coinciden</p> : null}
+        {error && <Alerta mensaje="Todos los campos son obligatorios" />}
+        {errorPassword && <Alerta mensaje="Las contraseñas no coinciden" />}
+        {exito && <ExitoAlerta mensaje="Formulario enviado exitosamente" />}
       </form>
       
 
